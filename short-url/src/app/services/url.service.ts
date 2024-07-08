@@ -8,7 +8,7 @@ import { catchError, Observable, throwError } from 'rxjs';
 export class UrlService {
 
   constructor(private http: HttpClient) { }
-  public apiUrl: string = "https://short-url-sfjb.onrender.com";
+  public apiUrl: string = "https://short-url-r1qw.onrender.com";
 
   public shortUrl(url: string): Observable<any> {
     return this.http.post(this.apiUrl + "/post_url", { url: url }).pipe(catchError(this.errorHandler));
