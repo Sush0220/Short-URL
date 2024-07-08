@@ -2,14 +2,24 @@ import { nanoid } from "nanoid";
 import URL from "../models/url.js";
 
 async function generateNewShortUrl(req, res) {
-  const body = req.body;
-  if (!body.url) return res.status(400).json({ message: "URL is required" });
-  const shortID = nanoid(8);
-  await URL.create({
-    shortId: shortID,
-    redirectUrl: body.url,
-  });
-  return res.json({ id: shortID });
+  try {
+    const body = req.body;
+    if (!body.url) return res.status(400).json({ message: "URL is required" });
+    let urlEntry = await URL.findOne({ originalUrl: body.url });
+    if (urlEntry) {
+      return res.status(200).json({ shortId: urlEntry.shortId });
+    } else {
+      const shortID = nanoid(8);
+      urlEntry = new URL({
+        shortId: shortID,
+        redirectUrl: body.url,
+      });
+      await urlEntry.save();
+      return res.status(201).json({ shortId: shortID });
+    }
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
 }
 
 async function getShortUrl(req, res) {
