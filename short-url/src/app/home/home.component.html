@@ -1,0 +1,22 @@
+<div class="bg-gradient-to-r from-blue-400 min-h-screen flex flex-col items-center">
+    <div>
+        <h1 class="text-4xl mt-3 font-bold">URL Shortener</h1>
+    </div>
+    <div class="flex flex-grow items-center justify-center w-full">
+        <div class="flex flex-col items-center justify-center space-y-4">
+            <label class="block text-gray-700 font-bold">Enter your original URL</label><br>
+            <div class="flex items-center justify-center">
+                <input type="text" name="url" placeholder="http://example.com" #urlInput
+                    class="flex-1 p-2 rounded-l border border-gray-300 focus:outline-none focus:border-blue-500">
+                <button (click)="shortenUrl(urlInput.value)"
+                    class="bg-green-500 text-white px-4 py-2 rounded-r hover:bg-green-600 focus:outline-none focus:bg-green-600">
+                    Generate
+                </button>
+            </div>
+            <div>
+                <span>Click Here -> <button class="bg-transparent border-gray-600"><a href="{{redirect}}"
+                            target="_blank">{{displayUrl}}</a></button></span>
+            </div>
+        </div>
+    </div>
+</div>
