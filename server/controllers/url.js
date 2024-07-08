@@ -15,7 +15,7 @@ async function generateNewShortUrl(req, res) {
         redirectUrl: url,
       });
       await urlEntry.save();
-      return res.status(201).json({ shortID });
+      return res.status(201).json({ shortId: shortID });
     }
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
