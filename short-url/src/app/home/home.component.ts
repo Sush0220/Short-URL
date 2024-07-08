@@ -19,7 +19,7 @@ export class HomeComponent {
 
   public shortenUrl(url: string) {
     this.urlService.shortUrl(url).subscribe(data => {
-      this.shortId = data.id;
+      this.shortId = data.shortId;
       this.displayUrl = `${this.shortId}`;
       this.redirect = url;
     }, (err) => {
